@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/giantswarm/schema/main/image_v0.0.1.json",
+    "$id": "https://raw.githubusercontent.com/giantswarm/schema/main/image/v0.0.1.json",
     "title": "Schema for container images",
     "description": "Useful for specifying a container image to use in a helm chart context.",
     "type": "object",
