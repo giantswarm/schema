@@ -1,0 +1,47 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/giantswarm/schema/main/image_v0.0.1.json",
+    "title": "Schema for container images",
+    "description": "Useful for specifying a container image to use in a helm chart context.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Image name, optionally prefixed by a namespace and a separator, excluding tag.",
+            "examples": [
+                "redis",
+                "giantswarm/happa"
+            ]
+        },
+        "tag": {
+            "type": "string",
+            "title": "Tag",
+            "description": "Specifies the version of the image, without colon.",
+            "examples": [
+                "latest",
+                "v4.1.2-alpine"
+            ]
+        },
+        "registry": {
+            "type": "string",
+            "title": "Registry",
+            "description": "Name of the server to access the image from.",
+            "examples": [
+                "quay.io",
+                "hub.docker.com"
+            ]
+        },
+        "pullPolicy": {
+            "type": "string",
+            "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
