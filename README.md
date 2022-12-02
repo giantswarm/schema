@@ -37,7 +37,9 @@ For example:
 - Use branches for schema in development.
   - If needed, you can reference a schem in development via `https://raw.githubusercontent.com/giantswarm/schema/BRANCH/PATH`.
 - Make sure to set a simple and useful folder name on the top level, using only the characters `[a-z0-9]` and the `-` separator.
+- Add a `README.md` file to your folder, explaining how to use the schema etc.
 - For a schema release to be published under `schema.giantswarm.io`, name the file in the format `VERSION.json`, where VERSION must match `[0-9]+.[0-9]+.[0-9]+` (this is more restrictive than semver!).
+- Maintain `CHANGELOG.md`.
 
 ## Versioning
 
