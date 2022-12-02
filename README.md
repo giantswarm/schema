@@ -2,6 +2,10 @@
 
 This is an experiment started in December 2022. The purpose is to simplify the building schema for [app](https://docs.giantswarm.io/developer-platform/app-platform/) configuration validation and foster alignment between apps.
 
+## Contents
+
+- [Image](image/): To specify a (Docker) container image to use in a container environment, plus additional information like a pull policy (Kubernetes specific).
+
 ## How to use
 
 Schema in this repository can be referenced from other schemas via the "raw" GitHub resource URL. Example:
@@ -27,10 +31,6 @@ The content of this repository (main branch only) is served by [schema-server](h
 For example:
 
     https://schema.giantswarm.io/image/v0.0.1
-
-## Contents
-
-- [Image](image/): To specify a (Docker) container image to use in a container environment, plus additional information like a pull policy (Kubernetes specific).
 
 ## Adding schema
 
