@@ -27,3 +27,5 @@ Schema in this repository can be referenced from other schemas via the "raw" Git
 Each schema is versioned individually. Each scchema file carries its own [semver 2.0.0](https://semver.org/spec/v2.0.0.html) version number in the file name.
 
 Historic versions are kept in the repository default branch, unless we have a good reason to delete a version/file.
+
+Changes between versions are tracked in the [changelog](CHANGELOG.md).
