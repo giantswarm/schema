@@ -1,0 +1,12 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://schema.giantswarm.io/labelvalue/v0.0.1",
+    "title": "Value of a Kubernetes resource label",
+    "type": "string",
+    "maxLength": 63,
+    "pattern": "^(?![-_\\.])([a-zA-Z0-9-_\\.]{0,63})(?<![-_\\.])$",
+    "examples": [
+        "exampleValue",
+        "Example_value.with_numbers-and.separators01"
+    ]
+}
