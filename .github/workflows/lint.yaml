@@ -10,6 +10,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Install schemalint
         run: |
           export SCHEMALINT_VERSION=v0.0.1
@@ -19,7 +24,7 @@ jobs:
           test -x ${HOME}/schemalint
       
       - name: List changed files
-        run: echo git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}
+        run: git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}
 
       - name: Lint all changed schema files
         run: |
