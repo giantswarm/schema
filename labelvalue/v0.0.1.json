@@ -3,8 +3,9 @@
     "$id": "https://schema.giantswarm.io/labelvalue/v0.0.1",
     "title": "Value of a Kubernetes resource label",
     "type": "string",
+    "minLength": 0,
     "maxLength": 63,
-    "pattern": "^(?![-_\\.])([a-zA-Z0-9-_\\.]{0,63})(?<![-_\\.])$",
+    "pattern": "^[-a-zA-Z0-9_\\.]{0,63}$",
     "examples": [
         "exampleValue",
         "Example_value.with_numbers-and.separators01"
