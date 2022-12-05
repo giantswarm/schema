@@ -16,8 +16,9 @@ jobs:
           fetch-depth: 0
 
       - name: Install schemalint
+        env:
+          SCHEMALINT_VERSION: v0.0.2
         run: |
-          export SCHEMALINT_VERSION=v0.0.1
           wget -q -O ${HOME}/schemalint.tar.gz https://github.com/giantswarm/schemalint/releases/download/${SCHEMALINT_VERSION}/schemalint-${SCHEMALINT_VERSION}-linux-amd64.tar.gz
           cd ${HOME} && tar xvzf schemalint.tar.gz
           cp ${HOME}/schemalint-${SCHEMALINT_VERSION}-linux-amd64/schemalint ${HOME}/schemalint
