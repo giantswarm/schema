@@ -1,0 +1,35 @@
+name: 'Lint schema'
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.json'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install schemalint
+        env:
+          SCHEMALINT_VERSION: v0.0.2
+        run: |
+          wget -q -O ${HOME}/schemalint.tar.gz https://github.com/giantswarm/schemalint/releases/download/${SCHEMALINT_VERSION}/schemalint-${SCHEMALINT_VERSION}-linux-amd64.tar.gz
+          cd ${HOME} && tar xvzf schemalint.tar.gz
+          cp ${HOME}/schemalint-${SCHEMALINT_VERSION}-linux-amd64/schemalint ${HOME}/schemalint
+          test -x ${HOME}/schemalint
+      
+      - name: List changed files
+        run: git diff --name-only origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} -- "*.json"
+
+      - name: Lint all changed schema files
+        run: |
+          for file in $(git diff --name-only origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} -- "*.json"); do
+            echo "$file was changed"
+            ${HOME}/schemalint $file
+          done
