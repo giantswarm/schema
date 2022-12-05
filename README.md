@@ -4,7 +4,9 @@ This is an experiment started in December 2022. The purpose is to simplify the b
 
 ## Contents
 
-- [Image](image/): To specify a (Docker) container image to use in a container environment, plus additional information like a pull policy (Kubernetes specific).
+- [image](image/): To specify a (Docker) container image to use in a container environment, plus additional information like a pull policy (Kubernetes specific).
+
+- [labelvalue](labelvalue/): String to be used as a Kubernetes resource label value.
 
 ## How to use
 
