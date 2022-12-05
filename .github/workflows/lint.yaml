@@ -7,22 +7,8 @@ on:
       - '**.json'
 
 jobs:
-  changedfiles:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Get changed files
-        id: changes
-        run: |
-          echo "ALL=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)" >> $GITHUB_OUTPUT
-          echo "JSON=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)" >> $GITHUB_OUTPUT
-
   lint:
     runs-on: ubuntu-latest
-    needs: changedfiles
-    if: ${{needs.changedfiles.outputs.json}}
     steps:
       - name: Install schemalint
         run: |
@@ -32,14 +18,12 @@ jobs:
           cp ${HOME}/schemalint-${SCHEMALINT_VERSION}-linux-amd64/schemalint ${HOME}/schemalint
           test -x ${HOME}/schemalint
       
-      - name: Echo changed files
-        run: |
-          echo ${{needs.changedfiles.outputs.JSON}}
+      - name: List changed files
+        run: echo git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}
 
       - name: Lint all changed schema files
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          for file in ${{needs.changedfiles.outputs.JSON}}; do
+          for file in $(git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}); do
             echo "$file was changed"
             ${HOME}/schemalint $file
           done
