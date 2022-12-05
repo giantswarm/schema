@@ -24,11 +24,11 @@ jobs:
           test -x ${HOME}/schemalint
       
       - name: List changed files
-        run: git diff --name-only ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} | grep ".json"
+        run: git diff --name-only origin/${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} -- "*.json"
 
       - name: Lint all changed schema files
         run: |
-          for file in $(git diff --name-only ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} | grep ".json"); do
+          for file in $(git diff --name-only origin/${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} -- "*.json"); do
             echo "$file was changed"
             ${HOME}/schemalint $file
           done
