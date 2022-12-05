@@ -7,33 +7,42 @@ on:
       - '**.json'
 
 jobs:
-  check:
-    name: 'ensure schema is valid JSON schema'
+  changedfiles:
     runs-on: ubuntu-latest
+    outputs:
+      all: ${{ steps.changes.outputs.all}}
+      json: ${{ steps.changes.outputs.json }}
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
+      - name: Get changed files
+        id: changes
+        run: |
+          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "::set-output name=json::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)"
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: changedfiles
+    if: ${{needs.changedfiles.outputs.json}}
+    steps:
       - name: Install schemalint
         run: |
           export SCHEMALINT_VERSION=v0.0.1
           wget -q -O ${HOME}/schemalint.tar.gz https://github.com/giantswarm/schemalint/releases/download/${SCHEMALINT_VERSION}/schemalint-${SCHEMALINT_VERSION}-linux-amd64.tar.gz
           cd ${HOME} && tar xvzf schemalint.tar.gz
           cp ${HOME}/schemalint-${SCHEMALINT_VERSION}-linux-amd64/schemalint ${HOME}/schemalint
+          test -x ${HOME}/schemalint
       
-      - name: Get changed JSON files
-        uses: tj-actions/changed-files@v34.5.0
-        id: changed-files-specific
-        with:
-          files: |
-            **.json
+      - name: Echo changed files
+        run: |
+          echo ${{needs.changedfiles.outputs.json}}
 
       - name: Lint all changed schema files
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+          for file in ${{needs.changedfiles.outputs.json}}; do
             echo "$file was changed"
             ${HOME}/schemalint $file
           done
