@@ -1,0 +1,39 @@
+name: 'Lint schema'
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.json'
+
+jobs:
+  check:
+    name: 'ensure schema is valid JSON schema'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install schemalint
+        run: |
+          export SCHEMALINT_VERSION=v0.0.1
+          wget -q -O ${HOME}/schemalint.tar.gz https://github.com/giantswarm/schemalint/releases/download/${SCHEMALINT_VERSION}/schemalint-${SCHEMALINT_VERSION}-linux-amd64.tar.gz
+          cd ${HOME} && tar xvzf schemalint.tar.gz
+          cp ${HOME}/schemalint-${SCHEMALINT_VERSION}-linux-amd64/schemalint ${HOME}/schemalint
+      
+      - name: Get changed JSON files
+        uses: tj-actions/changed-files@v34.5.0
+        id: changed-files-specific
+        with:
+          files: |
+            **.json
+
+      - name: Lint all changed schema files
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+            echo "$file was changed"
+            ${HOME}/schemalint $file
+          done
