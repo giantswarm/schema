@@ -24,11 +24,11 @@ jobs:
           test -x ${HOME}/schemalint
       
       - name: List changed files
-        run: git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}
+        run: git diff --name-only ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} | grep ".json"
 
       - name: Lint all changed schema files
         run: |
-          for file in $(git diff-tree --no-commit-id --name-only --diff-filter=ACMRT -r ${{ github.sha }}); do
+          for file in $(git diff --name-only ${GITHUB_BASE_REF} ${GITHUB_HEAD_REF} | grep ".json"); do
             echo "$file was changed"
             ${HOME}/schemalint $file
           done
