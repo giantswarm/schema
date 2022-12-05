@@ -9,9 +9,6 @@ on:
 jobs:
   changedfiles:
     runs-on: ubuntu-latest
-    outputs:
-      all: ${{ steps.changes.outputs.all}}
-      json: ${{ steps.changes.outputs.json }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -19,8 +16,8 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
-          echo "::set-output name=json::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)"
+          echo "ALL=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)" >> $GITHUB_OUTPUT
+          echo "JSON=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .json$ | xargs)" >> $GITHUB_OUTPUT
 
   lint:
     runs-on: ubuntu-latest
@@ -37,12 +34,12 @@ jobs:
       
       - name: Echo changed files
         run: |
-          echo ${{needs.changedfiles.outputs.json}}
+          echo ${{needs.changedfiles.outputs.JSON}}
 
       - name: Lint all changed schema files
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          for file in ${{needs.changedfiles.outputs.json}}; do
+          for file in ${{needs.changedfiles.outputs.JSON}}; do
             echo "$file was changed"
             ${HOME}/schemalint $file
           done
