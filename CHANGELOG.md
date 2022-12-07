@@ -2,10 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [clustername](clustername/) v0.0.1 (2022-12-07)
+
+- Add clustername schema.
+
 ## [labelvalue](labelvalue/) v0.0.1 (2022-12-05)
 
-- Added labelvalue schema
+- Added labelvalue schema.
 
 ## [image](image/) v0.0.1 (2022-12-01)
 
-- Added image schema
+- Added image schema.
