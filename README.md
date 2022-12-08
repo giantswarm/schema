@@ -1,6 +1,6 @@
 # Re-usable JSON schema
 
-This is an experiment started in December 2022. The purpose is to simplify the building schema for [app](https://docs.giantswarm.io/developer-platform/app-platform/) configuration validation and foster alignment between apps.
+The purpose is to simplify the building of schemas for [app](https://docs.giantswarm.io/developer-platform/app-platform/) configuration (values.yaml) validation and foster alignment between apps.
 
 ## Contents
 
@@ -10,7 +10,7 @@ This is an experiment started in December 2022. The purpose is to simplify the b
 
 ## How to use
 
-Schema in this repository can be referenced from other schemas via the "raw" GitHub resource URL. Example:
+Schema in this repository can be referenced from other schemas via out `schema.giantswarm.io` resource URLs. Example:
 
 ```json
 {
@@ -23,6 +23,8 @@ Schema in this repository can be referenced from other schemas via the "raw" Git
     }
 }
 ```
+
+See also this example PR: [https://github.com/giantswarm/dex-app/pull/236/files](https://github.com/giantswarm/dex-app/pull/236/files)
 
 ## schema.giantswarm.io URLs
 
@@ -37,15 +39,15 @@ For example:
 ## Adding schema
 
 - Use branches for schema in development.
-  - If needed, you can reference a schem in development via `https://raw.githubusercontent.com/giantswarm/schema/BRANCH/PATH`.
+  - If needed, you can reference a schema in development via `https://raw.githubusercontent.com/giantswarm/schema/BRANCH/PATH`.
 - Make sure to set a simple and useful folder name on the top level, using only the characters `[a-z0-9]` and the `-` separator.
 - Add a `README.md` file to your folder, explaining how to use the schema etc.
-- For a schema release to be published under `schema.giantswarm.io`, name the file in the format `VERSION.json`, where VERSION must match `[0-9]+.[0-9]+.[0-9]+` (this is more restrictive than semver!).
+- For a schema release to be published under `schema.giantswarm.io`, name the file in the format `VERSION.json`, where VERSION must match `v[0-9]+.[0-9]+.[0-9]+` (this is more restrictive than semver!).
 - Maintain `CHANGELOG.md`.
 
 ## Versioning
 
-Each schema is versioned individually. Each scchema file carries its own [semver](https://semver.org/spec/v2.0.0.html) version number in the file name. However we only support numeric major, minor and patch version segments.
+Each schema is versioned individually. Each schema file carries its own [semver](https://semver.org/spec/v2.0.0.html) version number in the file name. However we only support numeric major, minor and patch version segments.
 
 Historic versions are kept in the repository default branch, unless we have a good reason to delete a version/file.
 
