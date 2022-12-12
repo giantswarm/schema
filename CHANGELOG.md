@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Internal change (2022-12-12)
+
+- Modified CI to always eceture lint workflow.
+
 ## All (2022-12-09)
 
 - Applied normalization.
