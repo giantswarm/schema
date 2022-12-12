@@ -1,13 +1,13 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://schema.giantswarm.io/clustername/v0.0.1",
-    "title": "Cluster name",
-    "type": "string",
-    "minLength": 5,
-    "maxLength": 10,
-    "pattern": "^[a-z0-9]{5,10}$",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "examples": [
         "abc12",
         "dev01azure"
-    ]
+    ],
+    "maxLength": 10,
+    "minLength": 5,
+    "pattern": "^[a-z0-9]{5,10}$",
+    "title": "Cluster name",
+    "type": "string"
 }
