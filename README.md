@@ -4,6 +4,8 @@ The purpose is to simplify the building of schemas for [app](https://docs.giants
 
 ## Contents
 
+- [clustername](clustername/): String property to specify the name of a workload cluster.
+
 - [image](image/): To specify a (Docker) container image to use in a container environment, plus additional information like a pull policy (Kubernetes specific).
 
 - [labelvalue](labelvalue/): String to be used as a Kubernetes resource label value.
