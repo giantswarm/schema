@@ -1,0 +1,30 @@
+{
+    "$id": "https://schema.giantswarm.io/nodetaint/v0.0.1",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "The node this taint is attached to has the specified effect on any pod that does not tolerate the taint.",
+    "properties": {
+        "effect": {
+            "enum": [
+                "NoSchedule",
+                "PreferNoSchedule",
+                "NoExecute"
+            ],
+            "title": "Effect",
+            "type": "string"
+        },
+        "key": {
+            "title": "Key",
+            "type": "string"
+        },
+        "value": {
+            "title": "Value",
+            "type": "string"
+        }
+    },
+    "required": [
+        "effect",
+        "key"
+    ],
+    "title": "Node taint",
+    "type": "object"
+}
