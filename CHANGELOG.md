@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [nodetaint](nodetaint/) v0.0.1 (2023-03-06)
+
+- Added nodetaint schema.
+
 ## Internal change (2022-12-12)
 
 - Modified CI to always eceture lint workflow.

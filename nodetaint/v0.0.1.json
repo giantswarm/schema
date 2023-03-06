@@ -14,7 +14,8 @@
         },
         "key": {
             "title": "Key",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
         },
         "value": {
             "title": "Value",
