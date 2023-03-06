@@ -13,9 +13,9 @@
             "type": "string"
         },
         "key": {
+            "minLength": 1,
             "title": "Key",
-            "type": "string",
-            "minLength": 1
+            "type": "string"
         },
         "value": {
             "title": "Value",
