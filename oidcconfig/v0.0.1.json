@@ -1,0 +1,45 @@
+{
+    "$id": "https://schema.giantswarm.io/oidcconfig/v0.0.1",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+        "caPem": {
+            "description": "Identity provider's CA certificate in PEM format.",
+            "title": "Certificate authority",
+            "type": "string"
+        },
+        "clientId": {
+            "description": "OIDC client identifier to identify with",
+            "title": "Client ID",
+            "type": "string"
+        },
+        "groupsClaim": {
+            "default": "groups",
+            "description": "Name of the identity token claim bearing the user's group memberships.",
+            "title": "Groups claim",
+            "type": "string"
+        },
+        "issuerUrl": {
+            "description": "URL of the provider which allows the API server to discover public signing keys, not including any path. Discovery URL without the '/.well-known/openid-configuration' part.",
+            "format": "uri",
+            "title": "Issuer URL",
+            "type": "string"
+        },
+        "usernameClaim": {
+            "default": "email",
+            "description": "Name of the identity token claim bearing the unique user identifier.",
+            "title": "Username claim",
+            "type": "string"
+        },
+        "usernamePrefix": {
+            "description": "Prefix prepended to username values to prevent clashes with existing names",
+            "title": "Username prefix",
+            "type": "string"
+        }
+    },
+    "required": [
+        "clientId",
+        "issuerUrl"
+    ],
+    "title": "OpenID Connect (OIDC) configuration",
+    "type": "object"
+}
