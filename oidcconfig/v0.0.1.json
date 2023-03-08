@@ -8,7 +8,7 @@
             "type": "string"
         },
         "clientId": {
-            "description": "OIDC client identifier to identify with",
+            "description": "OIDC client identifier to identify with.",
             "title": "Client ID",
             "type": "string"
         },
