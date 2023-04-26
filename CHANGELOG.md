@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## Internal change (2022-12-12)
+## 2023-04-23
 
-- Modified CI to always eceture lint workflow.
+- CI/CD: Updated schemalint to version v2.1.1.
+
+## 2022-12-12
+
+- Modified CI to always execute lint workflow.
 
 ## All (2022-12-09)
 
