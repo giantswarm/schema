@@ -1,41 +1,41 @@
 {
     "$id": "https://schema.giantswarm.io/gvk/v0.0.1",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "title": "Schema for Kubernetes API group, version and kind",
     "description": "It can be used to specify which CustomResourceDefinition is used.",
-    "required": [
-        "group",
-        "version",
-        "kind"
-    ],
     "properties": {
         "group": {
-            "type": "string",
-            "title": "API group",
             "examples": [
                 "cluster.x-k8s.io",
                 "controlplane.cluster.x-k8s.io",
                 "infrastructure.cluster.x-k8s.io"
-            ]
+            ],
+            "title": "API group",
+            "type": "string"
+        },
+        "kind": {
+            "examples": [
+                "Cluster",
+                "KubeadmControlPlane"
+            ],
+            "title": "API kind",
+            "type": "string"
         },
         "version": {
-            "type": "string",
-            "title": "API version",
             "examples": [
                 "v1alpha1",
                 "v1alpha2",
                 "v1beta1",
                 "v1"
-            ]
-        },
-        "kind": {
-            "type": "string",
-            "title": "API kind",
-            "examples": [
-                "Cluster",
-                "KubeadmControlPlane"
-            ]
+            ],
+            "title": "API version",
+            "type": "string"
         }
-    }
+    },
+    "required": [
+        "group",
+        "version",
+        "kind"
+    ],
+    "title": "Schema for Kubernetes API group, version and kind",
+    "type": "object"
 }
