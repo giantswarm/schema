@@ -10,6 +10,8 @@ The purpose is to simplify the building of schemas for [app](https://docs.giants
 
 - [labelvalue](labelvalue/): String to be used as a Kubernetes resource label value.
 
+- [gvk](gvk/): It can be used to specify which CustomResourceDefinition is used.
+
 ## How to use
 
 Schema in this repository can be referenced from other schemas via out `schema.giantswarm.io` resource URLs. Example:
