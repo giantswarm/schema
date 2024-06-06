@@ -2,5 +2,16 @@
   "extends": [
     // Base config - https://github.com/giantswarm/renovate-presets/blob/main/default.json5
     "github>giantswarm/renovate-presets:default.json5",
+    // Pin to the SHA of a GitHub action.
+    "helpers:pinGitHubActionDigests",
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^lint\\.yaml$"],
+      "matchStrings": ["SCHEMALINT_VERSION: (?<currentValue>.*?)\\n"],
+      "depNameTemplate": "giantswarm/schemalint",
+      "datasourceTemplate": "github-releases"
+    },
+  ]
 }
