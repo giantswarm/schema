@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [gvk](gvk/) v0.0.1 (2023-07-07)
+
+- Add gvk schema.
+
 ## 2023-04-23
 
 - CI/CD: Updated schemalint to version v2.1.1.
